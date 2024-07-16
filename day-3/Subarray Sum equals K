@@ -1,0 +1,22 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+
+        HashMap<Integer,Integer> array_sums = new HashMap();
+        array_sums.put(0,1);
+        int sum = 0;
+        int result = 0;
+
+        for(int i=0;i<nums.length;i++){
+            sum += nums[i];
+
+            if(array_sums.containsKey(sum-k)){
+                result += array_sums.get(sum-k);
+            }
+            array_sums.put(sum,array_sums.getOrDefault(sum,0)+1);
+        }
+        return result;
+    }
+}
+
+Time Complexity: O(n)
+Space Complexity: O(n)
